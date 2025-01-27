@@ -1,17 +1,21 @@
 import { ENV } from "@/config/env";
-import express, { Request, Response } from "express";
+import { errorHandler } from "@/middleware/error";
+import express from "express";
+import "@/config/db";
+import { authRoutes } from "@/routes/auth";
 
 const app = express();
 
-// Middleware
+// middleware
 app.use(express.json());
 
-// Routes
-app.get("/", (req: Request, res: Response) => {
-  res.send("Hello, TypeScript with Express!");
-});
+// routes
+app.use("/api/auth", authRoutes);
 
-// Start Server
+// error middleware
+app.use(errorHandler);
+
+// start server
 app.listen(ENV.PORT, () => {
   console.log(`Server is running on http://localhost:${ENV.PORT}`);
 });
