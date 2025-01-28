@@ -13,7 +13,7 @@ const app = express();
 
 // setup cors
 const corsOptions: CorsOptions = {
-  origin: ["http://localhost:4000"],
+  origin: ["http://localhost:4000", "https://shoutme.vercel.app"],
 };
 
 // middleware
