@@ -11,7 +11,7 @@ export const getProfile = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { user } = req.body as WithToken<Request["body"]>;
+  const { user } = req as WithToken<Request>;
 
   try {
     // Fetch user from the database
@@ -39,8 +39,9 @@ export const updateProfile = async (
   next: NextFunction
 ) => {
   try {
-    const { name, email, phoneNumber, location, password, user } =
-      req.body as WithToken<Partial<RegisterBody>>;
+    const { name, email, phoneNumber, location, password } =
+      req.body as Partial<RegisterBody>;
+    const { user } = req as WithToken<Request>;
 
     const updatedData = {
       ...filterDefined({

@@ -10,8 +10,8 @@ export const createEmergency = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { title, description, location, user } =
-    req.body as WithToken<AddEmergencyBody>;
+  const { title, description, location } = req.body as AddEmergencyBody;
+  const { user } = req as WithToken<Request>;
 
   try {
     const emergency = await Emergency.create({
@@ -56,7 +56,7 @@ export const getEmergencies = async (
   next: NextFunction
 ) => {
   const { page = 1, pageSize = 20, search = "" } = req.query;
-  const { user } = req.body as WithToken<Request["body"]>;
+  const { user } = req as WithToken<Request>;
 
   try {
     const pageNumber = parseInt(page as string, 10) || 1;

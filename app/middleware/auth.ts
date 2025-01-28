@@ -17,7 +17,7 @@ export const authenticate = (
   } else {
     try {
       const decoded = verifyToken(token, ENV.JWT_SECRET);
-      (req as Request).body.user = (
+      (req as unknown as Record<string, unknown>).user = (
         decoded as unknown as Record<string, unknown>
       ).id;
       next();
