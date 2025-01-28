@@ -18,3 +18,15 @@ Content-Type: application/json
     "email": "udonsichisom02@gmail.com",
     "password": "Test@1234"
 }
+
+###
+
+POST http://localhost:5000/api/emergency
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTgyZTMwYjk0NmU5ZWFjMDhjMzkwOCIsImlhdCI6MTczODAyNjU0NH0.767kIy_Uu1bqLjlkwlKfHypn5wwlk0habt-MrzIJpdw
+
+{
+    "title": "Theft",
+    "description": "Armed robbers are attacking my street",
+    "location": "Posh view castle"
+}

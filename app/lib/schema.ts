@@ -31,3 +31,9 @@ export const loginSchema = z.object({
     )
     .min(8, "Password must be at least 8 characters long"),
 });
+
+export const addEmergencySchema = z.object({
+  title: z.string().min(1, "Enter emergency title"),
+  location: z.string().min(1, "Enter emergency location"),
+  description: z.string().min(1, "Enter emergency description"),
+});

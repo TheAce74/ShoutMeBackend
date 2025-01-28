@@ -2,15 +2,19 @@ import { ENV } from "@/config/env";
 import { errorHandler } from "@/middleware/error";
 import express from "express";
 import "@/config/db";
+import morgan from "morgan";
 import { authRoutes } from "@/routes/auth";
+import { emergencyRoutes } from "@/routes/emergency";
 
 const app = express();
 
 // middleware
 app.use(express.json());
+app.use(morgan("dev"));
 
 // routes
 app.use("/api/auth", authRoutes);
+app.use("/api/emergency", emergencyRoutes);
 
 // error middleware
 app.use(errorHandler);

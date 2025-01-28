@@ -60,7 +60,7 @@ export const login = async (
         devMessage: "User doesn't exist",
       });
     } else {
-      const isMatch = await bcrypt.compare(password, user.password);
+      const isMatch = await bcrypt.compare(password, String(user.password));
       if (!isMatch) {
         res.status(401).json({
           message: "Invalid password",

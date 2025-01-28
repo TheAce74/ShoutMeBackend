@@ -10,18 +10,20 @@ export const authenticate = (
   const token = req.headers.authorization?.split(" ")[1];
 
   if (!token) {
-    return res.status(401).json({
+    res.status(401).json({
       message: "No token provided",
       devMessage: "Append token in authorization header",
     });
   } else {
     try {
       const decoded = verifyToken(token, ENV.JWT_SECRET);
-      (req as unknown as Record<string, unknown>).user = decoded;
+      (req as Request).body.user = (
+        decoded as unknown as Record<string, unknown>
+      ).id;
       next();
     } catch (error) {
       console.error(error);
-      return res.status(401).json({
+      res.status(401).json({
         message: "Invalid token",
         devMessage: "Invalid token",
       });

@@ -6,6 +6,8 @@ const envSchema = z.object({
   JWT_SECRET: z.string(),
   BCRYPT_SALT_ROUNDS: z.coerce.number(),
   MONGODB_URI: z.string(),
+  EMAIL_USER: z.string(),
+  EMAIL_PASS: z.string(),
 });
 
 export const ENV = envSchema.parse(process.env);
