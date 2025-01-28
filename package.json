@@ -2,10 +2,10 @@
   "name": "shoutmebackend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app/index.ts",
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only -r tsconfig-paths/register app/index.ts",
-    "build": "tsc",
+    "build": "tsc && tsc-alias",
     "start": "node -r tsconfig-paths/register dist/index.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
@@ -26,7 +26,6 @@
     "morgan": "^1.10.0",
     "multer": "1.4.5-lts.1",
     "nodemailer": "^6.10.0",
-    "tsconfig-paths": "^4.2.0",
     "zod": "^3.24.1"
   },
   "devDependencies": {
@@ -45,6 +44,8 @@
     "globals": "^15.14.0",
     "prettier": "^3.4.2",
     "ts-node-dev": "^2.0.0",
+    "tsc-alias": "^1.8.10",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.7.3",
     "typescript-eslint": "^8.21.0"
   }
