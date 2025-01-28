@@ -49,3 +49,16 @@ GET http://localhost:5000/api/notification
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTgyZTMwYjk0NmU5ZWFjMDhjMzkwOCIsImlhdCI6MTczODAyNjU0NH0.767kIy_Uu1bqLjlkwlKfHypn5wwlk0habt-MrzIJpdw
 
+###
+
+GET http://localhost:5000/api/user
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTgyZTMwYjk0NmU5ZWFjMDhjMzkwOCIsImlhdCI6MTczODAyNjU0NH0.767kIy_Uu1bqLjlkwlKfHypn5wwlk0habt-MrzIJpdw
+
+###
+
+PATCH  http://localhost:5000/api/user
+Content-Type: application/x-www-form-urlencoded
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTgyZTMwYjk0NmU5ZWFjMDhjMzkwOCIsImlhdCI6MTczODAyNjU0NH0.767kIy_Uu1bqLjlkwlKfHypn5wwlk0habt-MrzIJpdw
+
+name=Chisom%20Udonsi&location=FearGod%20lodge,%20Umuchima
