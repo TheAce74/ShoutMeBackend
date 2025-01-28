@@ -30,3 +30,22 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTgyZTMwY
     "description": "Armed robbers are attacking my street",
     "location": "Posh view castle"
 }
+
+###
+
+GET http://localhost:5000/api/emergency
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTgyZTMwYjk0NmU5ZWFjMDhjMzkwOCIsImlhdCI6MTczODAyNjU0NH0.767kIy_Uu1bqLjlkwlKfHypn5wwlk0habt-MrzIJpdw
+
+###
+
+PATCH http://localhost:5000/api/emergency/679830824ead77ab91048f73
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTgyZTMwYjk0NmU5ZWFjMDhjMzkwOCIsImlhdCI6MTczODAyNjU0NH0.767kIy_Uu1bqLjlkwlKfHypn5wwlk0habt-MrzIJpdw
+
+###
+
+GET http://localhost:5000/api/notification
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTgyZTMwYjk0NmU5ZWFjMDhjMzkwOCIsImlhdCI6MTczODAyNjU0NH0.767kIy_Uu1bqLjlkwlKfHypn5wwlk0habt-MrzIJpdw
+

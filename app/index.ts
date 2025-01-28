@@ -5,6 +5,7 @@ import "@/config/db";
 import morgan from "morgan";
 import { authRoutes } from "@/routes/auth";
 import { emergencyRoutes } from "@/routes/emergency";
+import { notificationRoutes } from "@/routes/notification";
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(morgan("dev"));
 // routes
 app.use("/api/auth", authRoutes);
 app.use("/api/emergency", emergencyRoutes);
+app.use("/api/notification", notificationRoutes);
 
 // error middleware
 app.use(errorHandler);

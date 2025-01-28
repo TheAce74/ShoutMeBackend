@@ -49,3 +49,94 @@ export const createEmergency = async (
     next(error);
   }
 };
+
+export const getEmergencies = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const { page = 1, pageSize = 20, search = "" } = req.query;
+  const { user } = req.body as WithToken<Request["body"]>;
+
+  try {
+    const pageNumber = parseInt(page as string, 10) || 1;
+    const limit = parseInt(pageSize as string, 10) || 20;
+    const skip = (pageNumber - 1) * limit;
+
+    // Build the search query
+    const searchQuery = {
+      user,
+      $or: [
+        { title: { $regex: search, $options: "i" } },
+        { description: { $regex: search, $options: "i" } },
+        { location: { $regex: search, $options: "i" } },
+      ],
+    };
+
+    // Fetch emergencies with pagination
+    const [emergencies, total] = await Promise.all([
+      Emergency.find(searchQuery)
+        .skip(skip)
+        .limit(limit)
+        .sort({ createdAt: -1 }),
+      Emergency.countDocuments(searchQuery),
+    ]);
+
+    const totalPages = Math.ceil(total / limit);
+
+    // Pagination properties
+    const pagination = {
+      currentPage: pageNumber,
+      pageSize: limit,
+      totalRecords: total,
+      totalPages,
+      hasNextPage: pageNumber < totalPages,
+      hasPreviousPage: pageNumber > 1,
+      nextPage: pageNumber < totalPages ? pageNumber + 1 : null,
+      previousPage: pageNumber > 1 ? pageNumber - 1 : null,
+    };
+
+    res.status(200).json({
+      pagination,
+      data: emergencies,
+    });
+  } catch (err) {
+    console.error(err);
+    const error = new Error("Failed to fetch emergencies");
+    next(error);
+  }
+};
+
+export const resolveEmergency = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const { id } = req.params;
+
+  try {
+    // Find and update the emergency
+    const emergency = await Emergency.findByIdAndUpdate(
+      id,
+      { isActive: false },
+      { new: true } // Return the updated document
+    );
+
+    // If the emergency is not found
+    if (!emergency) {
+      res.status(404).json({
+        message: "Emergency not found",
+        devMessage: "Document id is invalid",
+      });
+    } else {
+      res.status(200).json({
+        message: "Emergency resolved successfully",
+        emergency,
+      });
+    }
+  } catch (err) {
+    console.error(err);
+    const error = new Error("Failed to resolve emergency");
+    next(error);
+  }
+};

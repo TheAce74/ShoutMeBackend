@@ -1,4 +1,8 @@
-import { createEmergency } from "@/controllers/emergency";
+import {
+  createEmergency,
+  getEmergencies,
+  resolveEmergency,
+} from "@/controllers/emergency";
 import { addEmergencySchema } from "@/lib/schema";
 import { authenticate } from "@/middleware/auth";
 import { validateSchema } from "@/middleware/validation";
@@ -12,5 +16,7 @@ router.post(
   validateSchema(addEmergencySchema),
   createEmergency
 );
+router.get("/", authenticate, getEmergencies);
+router.patch("/:id", authenticate, resolveEmergency);
 
 export { router as emergencyRoutes };
